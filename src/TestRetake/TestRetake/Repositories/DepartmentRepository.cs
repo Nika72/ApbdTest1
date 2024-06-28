@@ -1,7 +1,8 @@
 using TestRetake.Entities;
 using System.Data.SqlClient;
 
-namespace TestRetake.Repositories{
+namespace TestRetake.Repositories
+{
     public class DepartmentRepository : IDepartmentRepository
     {
         private readonly string _connectionString;
@@ -32,6 +33,7 @@ namespace TestRetake.Repositories{
                     }
                 }
             }
+
             return departments;
         }
 
@@ -57,12 +59,14 @@ namespace TestRetake.Repositories{
                     }
                 }
             }
+
             return department;
         }
 
         public async Task<int> AddAsync(Department department)
         {
-            const string query = "INSERT INTO Department (DepName, DepLocation) OUTPUT INSERTED.DepID VALUES (@DepName, @DepLocation)";
+            const string query =
+                "INSERT INTO Department (DepName, DepLocation) OUTPUT INSERTED.DepID VALUES (@DepName, @DepLocation)";
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand(query, connection))
             {

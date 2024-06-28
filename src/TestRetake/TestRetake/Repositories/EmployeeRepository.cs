@@ -1,7 +1,8 @@
 using TestRetake.Entities;
 using System.Data.SqlClient;
 
-namespace TestRetake.Repositories{
+namespace TestRetake.Repositories
+{
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly string _connectionString;
@@ -37,6 +38,7 @@ namespace TestRetake.Repositories{
                     }
                 }
             }
+
             return employees;
         }
 
@@ -67,12 +69,14 @@ namespace TestRetake.Repositories{
                     }
                 }
             }
+
             return employee;
         }
 
         public async Task<int> AddAsync(Employee employee)
         {
-            const string query = "INSERT INTO Employees (EmpName, JobName, ManagerID, HireDate, Salary, Commission, DepID) OUTPUT INSERTED.EmpID VALUES (@EmpName, @JobName, @ManagerID, @HireDate, @Salary, @Commission, @DepID)";
+            const string query =
+                "INSERT INTO Employees (EmpName, JobName, ManagerID, HireDate, Salary, Commission, DepID) OUTPUT INSERTED.EmpID VALUES (@EmpName, @JobName, @ManagerID, @HireDate, @Salary, @Commission, @DepID)";
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand(query, connection))
             {
@@ -90,7 +94,8 @@ namespace TestRetake.Repositories{
 
         public async Task<bool> UpdateAsync(Employee employee)
         {
-            const string query = "UPDATE Employees SET EmpName = @EmpName, JobName = @JobName, ManagerID = @ManagerID, Salary = @Salary, Commission = @Commission, DepID = @DepID WHERE EmpID = @EmpID";
+            const string query =
+                "UPDATE Employees SET EmpName = @EmpName, JobName = @JobName, ManagerID = @ManagerID, Salary = @Salary, Commission = @Commission, DepID = @DepID WHERE EmpID = @EmpID";
             using (var connection = new SqlConnection(_connectionString))
             using (var command = new SqlCommand(query, connection))
             {
