@@ -396,3 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Ignore .idea directory
+.idea/
+
+# appsettings files
+appsettings.json
+appsettings.*.json
