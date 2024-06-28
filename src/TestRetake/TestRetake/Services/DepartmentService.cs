@@ -1,7 +1,8 @@
 using TestRetake.Entities;
 using TestRetake.Repositories;
 
-namespace TestRetake.Services{
+namespace TestRetake.Services
+{
     public class DepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository _departmentRepository;
